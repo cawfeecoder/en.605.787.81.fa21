@@ -142,7 +142,9 @@ $(function () {
       aboutHtmlUrl,
       function (aboutHtml) {
         let rating = getRandomRating();
+        //Retain our existing wrapping container
         let container = aboutHtml.match(/<div class="rating-container">/g);
+        //Change the classes of the representative stars
         aboutHtml = aboutHtml
           .match(/<span class=(.*?)><\/span>/g)
           .map((el, idx) => {
@@ -152,12 +154,14 @@ $(function () {
               `$1\"${ratingClass}\"$3`
             );
           });
+        //Restore our wrapping container
         aboutHtml = container.concat(aboutHtml);
+        //Add textual representation of given star rating
         aboutHtml.push(`<p>${rating}-star rating</p>`);
+        //Close our wrapping container
         aboutHtml.push("</div>");
+        //Convert form an array into a cohesive HTML string
         aboutHtml = aboutHtml.join("");
-
-        console.log(aboutHtml);
 
         insertHtml("#main-content", aboutHtml);
       },
