@@ -26,7 +26,9 @@
     var foundItems = this;
 
     foundItems.checkFoundList = function () {
-      return foundItems.items.length == 0;
+      return (
+        foundItems.items.length == 0 && typeof foundItems.items !== "undefined"
+      );
     };
   }
 
@@ -35,7 +37,7 @@
   NarrowItDownController.$inject = ["$scope", "MenuSearchService"];
 
   function NarrowItDownController($scope, MenuSearchService) {
-    $scope.found = [];
+    $scope.found;
     $scope.searchTerm = "";
 
     $scope.narrowItDown = function (searchTerm) {
