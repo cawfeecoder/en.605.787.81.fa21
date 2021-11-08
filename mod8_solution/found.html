@@ -1,0 +1,14 @@
+<ul>
+  <li class="m-1" ng-repeat="item in foundItems.items">
+    {{item.name}}, {{item.short_name}}, {{item.description}}
+    <button
+      class="btn btn-warning"
+      ng-click="foundItems.onRemove({index: $index})"
+    >
+      Don't want this one!
+    </button>
+  </li>
+</ul>
+<div class="alert alert-info" ng-if="foundItems.checkFoundList()">
+  Nothing found
+</div>
