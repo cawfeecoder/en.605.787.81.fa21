@@ -1,0 +1,42 @@
+<div class="container" ng-controller="MyInfoController as myInfoCtrl">
+  <div ng-hide="myInfoCtrl.userData.registered">
+    Not Signed Up Yet. <a ui-sref="public.signup">Sign up Now!</a>
+  </div>
+  <div ng-show="myInfoCtrl.userData.registered">
+    <fieldset>
+      <h1>My Info</h1>
+      <form class="form-horizontal">
+        <div class="form-group">
+          <label class="col-sm-3 control-label">First Name</label>
+          <div class="col-sm-9">
+            <p class="form-control-static">{{ myInfoCtrl.userData.fname }}</p>
+          </div>
+        </div>
+        <div class="form-group">
+          <label class="col-sm-3 control-label">Last Name</label>
+          <div class="col-sm-9">
+            <p class="form-control-static">{{ myInfoCtrl.userData.lname }}</p>
+          </div>
+        </div>
+        <div class="form-group">
+          <label class="col-sm-3 control-label">Email</label>
+          <div class="col-sm-9">
+            <p class="form-control-static">{{ myInfoCtrl.userData.email }}</p>
+          </div>
+        </div>
+        <div class="form-group">
+          <label class="col-sm-3 control-label">Phone Number</label>
+          <div class="col-sm-9">
+            <p class="form-control-static">{{ myInfoCtrl.userData.phone }}</p>
+          </div>
+        </div>
+        <div class="form-group">
+          <label class="col-sm-3 control-label">Favorite Dish</label>
+          <div class="col-sm-9">
+            <menu-item menu-item="myInfoCtrl.userData.menuItem"></menu-item>
+          </div>
+        </div>
+      </form>
+    </fieldset>
+  </div>
+</div>

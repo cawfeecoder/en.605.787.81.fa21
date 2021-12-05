@@ -1,0 +1,155 @@
+<div class="container" ng-controller="SignUpController as signUpCtrl">
+  <div class="col-xs-12 pull-right">
+    <fieldset>
+      <form name="registrationForm" novalidate>
+        <div class="form-group form-horizontal">
+          <label for="fname" class="col-xs-4 col-form-label"
+            >First Name: <em>{{ signUpCtrl.user.fname }}</em>
+          </label>
+          <div class="col-xs-8">
+            <input
+              type="text"
+              class="form-control"
+              id="fname"
+              name="fname"
+              placeholder="First Name"
+              ng-model="signUpCtrl.user.fname"
+              required
+              minlength="1"
+              ng-maxlength="35"
+            />
+            <span
+              ng-if="(registrationForm.fname.$error.minlength || registrationForm.fname.$error.required) && registrationForm.fname.$touched"
+            >
+              First Name must be atleast a single character.
+            </span>
+            <span
+              ng-if="registrationForm.fname.$error.maxlength && registrationForm.fname.$touched"
+            >
+              First Name must not be longer than 35 characters.
+            </span>
+          </div>
+        </div>
+        <div class="form-group">
+          <label for="lname" class="col-xs-4 col-form-label"
+            >Last Name: <em>{{ signUpCtrl.user.lname }}</em></label
+          >
+          <div class="col-xs-8">
+            <input
+              type="text"
+              class="form-control"
+              id="lname"
+              name="lname"
+              placeholder="Last Name"
+              ng-model="signUpCtrl.user.lname"
+              required
+              minlength="1"
+              ng-maxlength="35"
+            />
+            <span
+              ng-if="(registrationForm.lname.$error.minlength || registrationForm.lname.$error.required) && registrationForm.lname.$touched"
+            >
+              Last name must be at least 4 characters long
+            </span>
+            <span
+              ng-if="registrationForm.lname.$error.maxlength && registrationForm.lname.$touched"
+            >
+              Last name must not be longer than 35 characters
+            </span>
+          </div>
+        </div>
+        <div class="form-group">
+          <label for="email" class="col-xs-4 col-form-label"
+            >Email address: <em>{{ signUpCtrl.user.email }}</em>
+          </label>
+          <div class="col-xs-8">
+            <input
+              type="email"
+              class="form-control"
+              id="email"
+              name="email"
+              placeholder="Email"
+              ng-model="signUpCtrl.user.email"
+              required
+            />
+            <span
+              ng-if="registrationForm.email.$invalid && registrationForm.email.$touched"
+            >
+              Must be a valid email address of the form local-part@domain
+            </span>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label for="phone" class="col-xs-4 col-form-label"
+            >Phone Number: <em>{{ signUpCtrl.user.phone }}</em></label
+          >
+          <div class="col-xs-8">
+            <input
+              class="form-control"
+              type="tel"
+              placeholder="555-555-5555"
+              id="phone"
+              name="phone"
+              ng-model="signUpCtrl.user.phone"
+              pattern="(\d{3})-(\d{3})-(\d{4})"
+            />
+            <span
+              ng-if="registrationForm.phone.$invalid && registrationForm.phone.$touched"
+            >
+              Phone must be of the form ###-###-####.
+            </span>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label for="favorite" class="col-xs-4 control-label"
+            >Favorite Dish: <em>{{ signUpCtrl.user.favorite }}</em></label
+          >
+          <div class="col-xs-8">
+            <input
+              type="text"
+              class="form-control"
+              id="favorite"
+              name="favorite"
+              placeholder="Favorite Dish"
+              ng-model="signUpCtrl.user.favorite"
+              ng-model-options="{ debounce: 500 }"
+              required
+            />
+            <span
+              ng-if="registrationForm.favorite.$error.required && registrationForm.phone.$touched"
+            >
+              A favorite dish is required
+            </span>
+            <span ng-if="signUpCtrl.dishNotExist">
+              No such menu number exists.
+            </span>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <div class="col-sm-offset-4 col-sm-8">
+            <button
+              type="submit"
+              class="btn btn-primary col-xs-2"
+              ng-disabled="registrationForm.$invalid"
+              ng-click="signUpCtrl.submit()"
+            >
+              Submit
+            </button>
+          </div>
+        </div>
+      </form>
+    </fieldset>
+  </div>
+  <div
+    ng-if="signUpCtrl.complete"
+    class="col-sm-offset-4 col-sm-8"
+    style="margin-top: 15px"
+  >
+    <span class="alert alert-success">
+      <strong>Your information has been saved.</strong>
+    </span>
+  </div>
+</div>
